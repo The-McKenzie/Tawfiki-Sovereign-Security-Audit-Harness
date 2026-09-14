@@ -1,4 +1,5 @@
 # Tawfiki Sovereign Security Audit Harness B001-B005
+Version: tsa-harness-1.1
 
 Copyright (c) 2026 Rodger McKenzie / Tawfiki AI. All rights reserved.
 Released for audit review and witness-run purposes only.
@@ -32,8 +33,8 @@ OWASP identifies risks. MITRE models threats. B001-B005 proves results.
 - VOID is a first-class outcome distinct from FAIL:
     FAIL = engine genuinely failed a suite
     VOID = audit itself is invalid (control failure, chain break, sandbox escape)
-- Negative controls (stub, corrupt, null/D8) are sealed records.
-  Control failure voids the entire run.
+- Negative controls (stub, corrupt) are pure harness-side self-tests -- no engine invoked.
+  null/D8 invokes engine in null mode. Control failure voids the entire run.
 - Timestamps are informational only. Chain ordering guaranteed by prev_seal.
 
 ## Witness Protocol
@@ -82,7 +83,7 @@ Contact: Rodger McKenzie / Tawfiki AI
     set SOV_ENGINE_BIN=<path>
     set SOV_ENGINE_KEY=<key>
     set SOV_AUDIT_SALT=<agreed salt>
-    python tawfiki_sovereign_audit_harness.py --prereg prereg.json
+    python tawfiki_sovereign_audit_harness.py --prereg prereg.json [--probes witness_probes.txt]
 
 ## Related
 
